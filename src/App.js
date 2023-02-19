@@ -1,7 +1,6 @@
 import "./App.css";
-//download this package so that I am able to use CSS within my React project
+//downloaded this package so that I am able to use CSS within my React project
 import styled from "styled-components";
-//useEffect used so the bird can fall down at a continous rate
 import { useEffect, useState } from "react";
 
 const BIRD_SIZE = 20;
@@ -20,11 +19,12 @@ function App() {
   //useState used to control obstacle height and left positioning
   const [obstacleHeight, setobstacleHeight] = useState(100);
   const [obstacleLeft, setobstacleLeft] = useState(GAME_WIDTH - OBSTACLE_WIDTH);
-  //useState to keep track of the user score
+  //useState used to keep track of the user score
   const [score, setScore] = useState(0);
 
   const bottomObstacleHeight = GAME_HEIGHT - OBSTACLE_GAP - obstacleHeight;
 
+  //useEffect used so the bird can fall down at a continuous rate
   useEffect(() => {
     let timeId;
     if (gameHasStarted && birdPosition < GAME_HEIGHT - BIRD_SIZE) {
@@ -38,7 +38,7 @@ function App() {
     };
   }, [birdPosition, gameHasStarted]);
 
-  //update the obstacles path from the right side of the screen to the left and make it scroll constantly
+  //useEffect used to update the obstacles path from the right side of the screen to the left and make obstacles scroll constantly
   useEffect(() => {
     let obstacleId;
     if (gameHasStarted && obstacleLeft >= -OBSTACLE_WIDTH) {
@@ -59,7 +59,7 @@ function App() {
     }
   }, [gameHasStarted, obstacleLeft]);
 
-  //useEffect use for collison detection. To check has it collide with the top or bottom obstacle
+  //useEffect use for collison detection. To check if the bird has collided with the top or bottom obstacles
   useEffect(() => {
     const hasCollideWithTopObstacle =
       birdPosition >= 0 && birdPosition < obstacleHeight;
